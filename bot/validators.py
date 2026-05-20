@@ -27,7 +27,12 @@ def validate_order_type(order_type):
 
 def validate_quantity(quantity):
 
-    quantity = float(quantity)
+    try:
+        quantity = float(quantity)
+    except (TypeError, ValueError) as exc:
+        raise ValidationError(
+            "Quantity must be a valid number"
+        ) from exc
 
     if quantity <= 0:
         raise ValidationError(
@@ -43,7 +48,12 @@ def validate_price(price):
             "Price is required for LIMIT orders"
         )
 
-    price = float(price)
+    try:
+        price = float(price)
+    except (TypeError, ValueError) as exc:
+        raise ValidationError(
+            "Price must be a valid number"
+        ) from exc
 
     if price <= 0:
         raise ValidationError(

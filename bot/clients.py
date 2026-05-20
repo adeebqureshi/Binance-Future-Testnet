@@ -18,7 +18,7 @@ class BinanceFuturesClient:
                 "BINANCE_API_KEY and BINANCE_API_SECRET must be set in environment or .env"
             )
 
-        self.client = Client(api_key, api_secret)
+        self.client = Client(api_key, api_secret, ping=False)
         self.client.FUTURES_URL = "https://testnet.binancefuture.com/fapi"
 
     def get_client(self):
